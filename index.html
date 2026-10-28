@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mahalappa Dhumansure | Portfolio</title>
+  <meta name="description" content="Portfolio website of Mahalappa Dhumansure, CSE student at RVCE, Bengaluru." />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-2: #121a2b;
+      --card: #1a2338;
+      --card-2: #212f4d;
+      --primary: #64d2ff;
+      --secondary: #7c9cff;
+      --accent: #8ef0c6;
+      --text: #eaf2ff;
+      --muted: #a4b1c7;
+      --shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+      --radius: 20px;
+      --max-width: 1200px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, var(--bg), var(--bg-2));
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(100% - 32px, var(--max-width));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(11, 16, 32, 0.8);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 72px;
+    }
+
+    .brand {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-weight: 500;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #05111f;
+      font-weight: 700;
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 90px 0 50px;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(100, 210, 255, 0.09);
+      color: var(--primary);
+      border: 1px solid rgba(100, 210, 255, 0.2);
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(2.6rem, 5vw, 5rem);
+      line-height: 1.08;
+      letter-spacing: -0.05em;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      margin: 0 0 28px;
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 640px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .primary-btn, .secondary-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 22px;
+      border-radius: 14px;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .primary-btn {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #07121e;
+      box-shadow: var(--shadow);
+    }
+
+    .secondary-btn {
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.02);
+      color: var(--text);
+    }
+
+    .primary-btn:hover, .secondary-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .mini-stats {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .mini-stats div {
+      min-width: 120px;
+    }
+
+    .mini-stats strong {
+      display: block;
+      font-size: 1.4rem;
+      color: var(--text);
+    }
+
+    .mini-stats span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .profile-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 28px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-card::before {
+      content: "";
+      position: absolute;
+      inset: -40px 30% auto -40px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(124,156,255,0.35), transparent 70%);
+      filter: blur(12px);
+    }
+
+    .profile-box {
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(180deg, rgba(30,43,67,0.95), rgba(17,24,39,0.95));
+      border-radius: 22px;
+      padding: 24px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .avatar {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      margin: 0 auto 18px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: grid;
+      place-items: center;
+      font-size: 3.2rem;
+      font-weight: 700;
+      color: #07121e;
+      box-shadow: var(--shadow);
+    }
+
+    .profile-box h3 {
+      margin: 10px 0 8px;
+      text-align: center;
+      font-size: 1.6rem;
+    }
+
+    .profile-box p {
+      margin: 0;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .profile-meta {
+      margin-top: 22px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .meta-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .meta-label {
+      color: var(--muted);
+    }
+
+    .meta-value {
+      font-weight: 600;
+      color: var(--text);
+      text-align: right;
+    }
+
+    section {
+      padding: 40px 0;
+    }
+
+    .section-header {
+      margin-bottom: 24px;
+    }
+
+    .section-header h2 {
+      margin: 0 0 8px;
+      font-size: clamp(2rem, 3vw, 3rem);
+      letter-spacing: -0.04em;
+    }
+
+    .section-header p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 700px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 26px;
+      align-items: stretch;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      padding: 25px 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .info-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .info-list div {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .info-list strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .info-list span {
+      color: var(--muted);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .skill-group {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .skill-group h3 {
+      margin: 0 0 18px;
+      font-size: 1.15rem;
+      color: var(--text);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      background: rgba(100, 210, 255, 0.08);
+      color: var(--text);
+      border: 1px solid rgba(100, 210, 255, 0.16);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .project-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(124, 156, 255, 0.3);
+    }
+
+    .project-badge {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(142, 240, 198, 0.08);
+      color: var(--accent);
+      border: 1px solid rgba(142, 240, 198, 0.16);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .project-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.35rem;
+    }
+
+    .project-card p {
+      margin: 0 0 16px;
+      color: var(--muted);
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .project-tech span {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      color: var(--muted);
+      font-size: 0.8rem;
+      padding: 7px 10px;
+      border-radius: 10px;
+    }
+
+    .contact-panel {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: center;
+      background: linear-gradient(135deg, rgba(100,210,255,0.08), rgba(124,156,255,0.08));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      padding: 26px 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-panel h3 {
+      margin: 0 0 8px;
+      font-size: clamp(1.6rem, 2vw, 2.2rem);
+    }
+
+    .contact-panel p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 30px 0 60px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner, .about-grid, .skills-grid, .projects-grid, .contact-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        flex-direction: column;
+        justify-content: center;
+        gap: 12px;
+        padding: 14px 0;
+      }
+
+      .nav-links {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 560px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero {
+        padding-top: 60px;
+      }
+
+      .mini-stats {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .primary-btn, .secondary-btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">Mahalappa Dhumansure</div>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact" class="nav-btn">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <span class="eyebrow">Computer Science Student</span>
+          <h1>
+            Hi, I'm <span class="gradient-text">Mahalappa Dhumansure</span>
+          </h1>
+          <p>
+            I’m a passionate Computer Science and Engineering student at R. V. College of Engineering (RVCE), Bengaluru,
+            currently in my 2nd year. I enjoy software development, web development, AI/ML, and solving real-world problems
+            through technology.
+          </p>
+
+          <div class="hero-actions">
+            <a class="primary-btn" href="#projects">View Projects</a>
+            <a class="secondary-btn" href="#contact">Hire Me</a>
+          </div>
+
+          <div class="mini-stats">
+            <div>
+              <strong>2nd</strong>
+              <span>Year CSE</span>
+            </div>
+            <div>
+              <strong>RVCE</strong>
+              <span>Bengaluru</span>
+            </div>
+            <div>
+              <strong>2029</strong>
+              <span>Graduation</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-card">
+          <div class="profile-box">
+            <div class="avatar">MD</div>
+            <h3>Mahalappa Dhumansure</h3>
+            <p>Computer Science Engineering Student | Aspiring Software Developer</p>
+
+            <div class="profile-meta">
+              <div class="meta-item">
+                <span class="meta-label">College</span>
+                <span class="meta-value">RVCE, Bengaluru</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Branch</span>
+                <span class="meta-value">CSE</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Year</span>
+                <span class="meta-value">2nd Year</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-header">
+          <h2>About Me</h2>
+          <p>
+            I’m a motivated and curious learner who is passionate about building impactful digital solutions.
+            My interests include web development, artificial intelligence, database systems, and collaborative problem-solving.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <div class="card">
+            <p>
+              I enjoy turning ideas into functional applications and learning through hands-on projects.
+              My goal is to grow as a software developer by improving my technical skills, working on meaningful projects,
+              and collaborating with people who share the same passion for innovation and problem solving.
+            </p>
+
+            <div class="info-list">
+              <div>
+                <strong>Full Name</strong>
+                <span>Mahalappa Dhumansure</span>
+              </div>
+              <div>
+                <strong>College</strong>
+                <span>R. V. College of Engineering (RVCE), Bengaluru</span>
+              </div>
+              <div>
+                <strong>Branch</strong>
+                <span>Computer Science and Engineering (CSE)</span>
+              </div>
+              <div>
+                <strong>Current Year</strong>
+                <span>2nd Year</span>
+              </div>
+              <div>
+                <strong>Graduation Year</strong>
+                <span>2029</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="section-header" style="margin-bottom: 12px;">
+              <h2 style="font-size:1.6rem;">Interests</h2>
+            </div>
+            <div class="tags">
+              <span class="tag">Software Development</span>
+              <span class="tag">Web Development</span>
+              <span class="tag">AI/ML</span>
+              <span class="tag">Database Management</span>
+              <span class="tag">Problem Solving</span>
+              <span class="tag">Collaborative Coding</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-header">
+          <h2>Technical Skills</h2>
+          <p>These are the technologies and tools I am actively learning and applying in projects.</p>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-group">
+            <h3>Programming</h3>
+            <div class="tags">
+              <span class="tag">C</span>
+              <span class="tag">Python</span>
+              <span class="tag">JavaScript</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h3>Web Development</h3>
+            <div class="tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">React</span>
+              <span class="tag">Node.js</span>
+              <span class="tag">Express.js</span>
+              <span class="tag">Flask</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h3>Data & Tools</h3>
+            <div class="tags">
+              <span class="tag">MongoDB</span>
+              <span class="tag">SQL</span>
+              <span class="tag">Git</span>
+              <span class="tag">GitHub</span>
+              <span class="tag">VS Code</span>
+              <span class="tag">MongoDB Compass</span>
+              <span class="tag">NumPy</span>
+              <span class="tag">Pandas</span>
+              <span class="tag">Matplotlib</span>
+              <span class="tag">Streamlit</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-header">
+          <h2>Projects</h2>
+          <p>Some of the projects I’ve worked on that reflect my creativity, technical learning, and problem-solving mindset.</p>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project-card">
+            <span class="project-badge">Student System</span>
+            <h3>Student Management System</h3>
+            <p>
+              A practical project focused on organizing and managing student records, academic information,
+              and administrative workflows in a structured digital platform.
+            </p>
+            <div class="project-tech">
+              <span>Python</span>
+              <span>Database</span>
+              <span>Web UI</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <span class="project-badge">AI Project</span>
+            <h3>CampusTrend — AI-Powered College Notice Board Aggregator</h3>
+            <p>
+              An AI-driven solution to collect, aggregate, and display relevant college notices and updates in one place,
+              helping students stay informed and organized.
+            </p>
+            <div class="project-tech">
+              <span>AI</span>
+              <span>Web</span>
+              <span>Data Processing</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <span class="project-badge">Optimization</span>
+            <h3>UrbanScout AI — Neighborhood Liveability and Commute Optimizer</h3>
+            <p>
+              A smart project designed to analyze neighborhood quality, commute convenience, and livability factors
+              to help users make informed housing and travel decisions.
+            </p>
+            <div class="project-tech">
+              <span>AI/ML</span>
+              <span>Analytics</span>
+              <span>Optimization</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <span class="project-badge">Python Graphics</span>
+            <h3>Automated 2D Geometry Generator using Python</h3>
+            <p>
+              A creative project that automatically generates 2D geometric shapes and patterns using Python,
+              showcasing algorithmic thinking and visualization skills.
+            </p>
+            <div class="project-tech">
+              <span>Python</span>
+              <span>Visualization</span>
+              <span>Automation</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <span class="project-badge">Embedded</span>
+            <h3>Contactless Health Monitoring System using Arduino</h3>
+            <p>
+              A healthcare-themed project utilizing Arduino-based sensing technologies to monitor health
+              parameters without physical contact, reflecting interest in embedded and practical tech solutions.
+            </p>
+            <div class="project-tech">
+              <span>Arduino</span>
+              <span>Electronics</span>
+              <span>IOT</span>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <span class="project-badge">Portfolio</span>
+            <h3>Personal Portfolio Website</h3>
+            <p>
+              This portfolio is built to showcase my skills, education, interests, and projects in a clean and
+              professional format for recruiters and collaborators.
+            </p>
+            <div class="project-tech">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-panel">
+          <div>
+            <h3>Let’s connect</h3>
+            <p>
+              I’m open to collaborations, internships, and opportunities to learn and build impactful projects.
+            </p>
+          </div>
+          <div class="hero-actions" style="margin:0;">
+            <a class="primary-btn" href="mailto:your.mahalappadhumansure@gmail.com">Email Me</a>
+            <a class="secondary-btn" href="https://github.com/mahalappadhummansure" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="secondary-btn" href="https://www.linkedin.com/in/mahalappadhumansure" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Mahalappa Dhumansure. All rights reserved.
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
